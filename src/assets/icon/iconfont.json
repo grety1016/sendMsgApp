@@ -1,0 +1,23 @@
+{
+  "id": "4648511",
+  "name": "sendMsg",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "sendMsg自定义图标",
+  "glyphs": [
+    {
+      "icon_id": "7008966",
+      "name": "message_fill",
+      "font_class": "message_fill",
+      "unicode": "e70d",
+      "unicode_decimal": 59149
+    },
+    {
+      "icon_id": "13074988",
+      "name": "phone",
+      "font_class": "phone",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    }
+  ]
+}

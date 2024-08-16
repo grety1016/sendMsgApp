@@ -1,0 +1,103 @@
+/* 登录栏背景样式 
+.login-nav-bar {
+  background-color: #2481ec;
+  height: 70px;
+}
+
+ 
+.login-nav-bar .van-nav-bar__title {
+  color: white;
+  font-size: 45px;
+  height: 60px;
+}
+ 
+.login-nav-bar .van-nav-bar__text {
+  color: white;
+  font-style: normal;
+}
+ 
+.login_background_image {
+  background-image: url('../assets/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh; 
+  width: 100%;
+}
+ 
+.login_button {
+  height: 68px;
+  width: 380px;
+  align-items: center;
+  margin-left:180px;   
+  margin-top: 120px;
+  font-size: 35px;
+  align-items: center;
+  color: white;
+  background-color: transparent;
+  
+}
+ 
+.login_img {
+  margin-top: 200px;
+  width: 660px;  
+  height: 220px;
+  margin-left: 5%;
+}
+ 
+.login_background_image .login_content .login_input_phone{
+  color:#2596fa;  
+  display: flex;
+  align-items: center; 
+  padding-left: 140px;
+  margin-bottom: 20p;   
+  
+}
+.login_background_image .login_content .login_input_phone .van-cell{
+  color:#2596fa;  
+  display: flex;
+  align-items: center; 
+  padding-left: 40px;
+  padding-top:12px;
+  font-size: 30px;
+  background-color: transparent;
+} 
+.login_background_image .login_content .login_input_code{
+  color:#2596fa;  
+  display: flex;
+  align-items: center; 
+  padding-left: 140px;  
+  }
+.login_background_image .login_content .login_input_code .van-cell{
+  color:#2596fa;  
+  display: flex;
+  align-items: center; 
+  padding-left: 40px;
+  padding-top:12px;
+  font-size: 30px;
+}
+ 
+.login_background_image .login_content .van-cell.van-field .van-cell__title{
+  width:80px;
+  color:darkgrey;
+  font-size: 35px;      
+}
+ 
+.login_background_image .login_content .login_input_code .van-cell.van-field {
+  width:280px;   
+  margin-right: 15px; 
+}
+
+.login_getcode{
+  width: 168px;
+  height: 50px;
+  font-size: 20px;
+  background-color: transparent;
+}
+*/
+
+ 
+
+ 
+ 
+ 
+ 
