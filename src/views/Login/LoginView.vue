@@ -24,9 +24,17 @@
       </div>
       <van-button plain hairline type="primary" native-type="submit" class="login_button">
         登 录</van-button>
-    </van-form>
-
+    </van-form>    
   </div>
+   <div>
+    <van-dialog v-model:show="dialogShow" title="发送成功，添加至浮窗，复制验证码" confirmButtonText="我知道了">
+      <img src="@/assets/picture/smscode_Remind.png"  class="dialog_img"/>
+    </van-dialog>
+   </div>
+   
+   
+ 
+
 </template>
 
 
@@ -47,7 +55,10 @@ import { useRouter } from "vue-router";
 import {
   showLoadingToast,
   showToast,
+  showDialog
 } from "vant";
+
+import 'vant/es/toast/style';
 
 //获取pinia的Store
 const LoginStore = useLoginStore();
@@ -104,22 +115,17 @@ const countDown = () => {
   }
 };
 
+const dialogShow = ref(false);
+
+
 const onPush = () => {
 
   //向服务器请求随机验证码
   getCode(user.userPhone).then((res) => {
     if (res.data.code === 0) {
-      showToast({
-        message: "发送成功请点击右上方***\n添加到悬浮窗口复制验证码！",
-        //显示时间
-        duration: 6000,
-
-      });
+      dialogShow.value=true;
     } else if (res.data.code === -2) {
-      showToast({
-        message: "重复发送请点击右上方***添加到悬浮窗口复制最近一次验证码！",
-        duration: 6000,
-      });
+      dialogShow.value=true;      
     } else {
       showToast({
         message: "该手机未注册\n请联系管理员注册手机号！",
@@ -233,7 +239,7 @@ const loginValid = () => {
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .login_input {
   position: absolute;
   transform: translate(48px, -520px);
@@ -323,4 +329,19 @@ div.van-cell.van-field.transparent-input::after {
   margin-left: 105px;
   margin-top: 35px;
 }
+// show_dialog样式
+:deep(.van-dialog){
+width: 90%;
+height: 88%; 
+}
+
+:deep(.van-dialog__content){ 
+  height: 80%;
+  justify-content: space-around; 
+  display: flex; 
+}
+.dialog_img{
+  width: 70%; 
+}
+ 
 </style>
