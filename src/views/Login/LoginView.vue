@@ -4,7 +4,7 @@
     <van-form @submit="onSubmit">
       <div class="login_content">
         <div class="login_input_phone">
-          <van-field v-model="user.userPhone" name="userName" left-icon="user-o" placeholder="请输入绑定钉钉手机号"
+          <van-field v-model="user.userPhone" type="digit" maxlength="11" name="userName" left-icon="user-o" placeholder="请输入绑定钉钉手机号"
             class="transparent-input">
             <template #left-icon>
               <van-icon class="iconfont ico_size" class-prefix="icon" name="phone" size="0.5rem"></van-icon>
@@ -12,7 +12,7 @@
           </van-field>
         </div>
         <div class="login_input_code">
-          <van-field v-model="user.smsCode" type="text" left-icon="comment-o" name="userPwd" placeholder="请输入验证码"
+          <van-field v-model="user.smsCode"   left-icon="comment-o" type="digit" maxlength="6" name="userPwd" placeholder="请输入验证码"
             class="transparent-input">
             <template #left-icon>
               <van-icon class="iconfont ico_size" class-prefix="icon" name="message_fill" size="0.5rem"></van-icon>
@@ -22,7 +22,7 @@
             @click="onPush">{{ buttonText }}</van-button>
         </div>
       </div>
-      <van-button plain hairline type="primary" native-type="submit" class="login_button">
+      <van-button plain hairline type="primary"  native-type="submit" class="login_button" >
         登 录</van-button>
     </van-form>    
   </div>
@@ -154,6 +154,7 @@ const router = useRouter();
 //   user.userPwd = user.userPwd.replace(/\D/g, '').trim();
 // };
 
+ 
 //登录表单提交事件函数
 const onSubmit = async () => {
   //获取IP地址
