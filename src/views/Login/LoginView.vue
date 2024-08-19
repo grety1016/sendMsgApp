@@ -27,7 +27,7 @@
     </van-form>    
   </div>
    <div>
-    <van-dialog v-model:show="dialogShow" title="发送成功，添加至浮窗，复制验证码" confirmButtonText="我知道了">
+    <van-dialog v-model:show="dialogShow" title="验证码已发送，添加至浮窗，复制验证码" confirmButtonText="我知道了">
       <img src="@/assets/picture/smscode_Remind.png"  class="dialog_img"/>
     </van-dialog>
    </div>
@@ -127,10 +127,9 @@ const onPush = () => {
     } else if (res.data.code === -2) {
       dialogShow.value=true;      
     } else {
-      showToast({
-        message: "该手机未注册\n请联系管理员注册手机号！",
-        duration: 6000,
-      });
+      showDialog({
+        message: '该手机未注册，请联系管理员开通！',
+      }) 
     }
   }).catch((err) => {
     console.log(err);
@@ -339,9 +338,6 @@ height: 88%;
   height: 80%;
   justify-content: space-around; 
   display: flex; 
-}
-.dialog_img{
-  width: 70%; 
-}
+} 
  
 </style>
