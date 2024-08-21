@@ -3,8 +3,7 @@
    <div class="vanta_area" ref="Area">
       <img class="login" src="../assets/logo/logo.png" />
       <img class="login2" src="../assets/logo/logo3.png" />    
-    </div>
-  <solt></solt>  
+    </div> 
 </template>
 <script setup>
 //导入vanta.js和three.js，以及ref等hooks
@@ -31,8 +30,9 @@ onMounted(() => {
     gyroControls: false,
     minHeight: 200.0,
     minWidth: 200.0,
-    scale: 1.0,
-    scaleMobile: 1.0
+    scale: 1,
+    scaleMobile: 2,
+    size:0.8,
     //因为这里vantaEffect是没有setOptions这个方法的
   })
 })

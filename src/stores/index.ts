@@ -1,6 +1,6 @@
 import { createPinia, defineStore } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 import { User } from '@/types/types'
 // import useWebSocket  from 'vue-native-websocket-vue3'
 
@@ -22,7 +22,6 @@ export const useLoginStore = defineStore(
     const setUserData = (data: User) => {
       loginUser = Object.assign(loginUser, data)
       loginUser.smsCode = ''
-      loginUser.userPhone = ''
       //另外一种展开语法  loginUser = { ...loginUser, ...data };这种方法要求被复制的对象也有跟新的对象有相同的方法方可
     }
 
@@ -40,7 +39,7 @@ export const useLoginStore = defineStore(
       {
         key: 'localStorage',
         storage: window.localStorage,
-        paths: ['loginUser', 'smsButtonDisabled']
+        paths: ['loginUser']
       }
       // ,{
       //     key:'sessionStorage',
