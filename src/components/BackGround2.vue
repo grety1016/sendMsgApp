@@ -9,7 +9,7 @@
 <style lang="less" scoped>
 .vanta_area {
   width: 100vw; /* 设置宽度为视口宽度 */
-  height: 100vh; /* 设置高度为视口高度 */ 
+  height: 100vh; /* 设置高度为视口高度 */  
   background:url("../assets/logo/bg.png");
   background-size: cover; /* 背景图片��满整个容器 */
 }

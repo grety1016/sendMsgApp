@@ -1,5 +1,5 @@
 <template>
-  <LoginBackground />
+  <LoginBackground/>
   <div class="login_input">
     <van-form @submit="onSubmit">
       <div class="login_content">
@@ -237,7 +237,7 @@ const loginValid = () => {
   height: 400px;
   border-radius: 60px;
   /* 圆角处理 */
-  background-color: rgba(85, 86, 87, 0.2);
+  background-color: rgba(85, 86, 87, 0.5);
   padding-left: 2px;
 }
 

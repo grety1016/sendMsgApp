@@ -1,7 +1,7 @@
 import { onLogin } from "@/api/userLogin";
 import { createRouter, createWebHistory } from "vue-router"; 
 import { useLoginStore } from "@/stores"; 
-import { User } from "@/types/types"; 
+// import { User } from "@/types/types"; 
 
 const LoginView = () => import("@/views/Login/LoginView.vue");
 const FlowForm = () => import("@/views/FlowForm/FlowForm.vue");
