@@ -1,21 +1,45 @@
 <template>
-  <LoginBackground/>
+  <LoginBackground />
   <div class="login_input">
     <van-form @submit="onSubmit">
       <div class="login_content">
         <div class="login_input_phone">
-          <van-field v-model="user.userPhone" type="digit" maxlength="11" name="userName" left-icon="user-o"
-            placeholder="请输入绑定钉钉手机号" class="transparent-input">
+          <van-field
+            v-model="user.userPhone"
+            type="digit"
+            maxlength="11"
+            name="userName"
+            left-icon="user-o"
+            placeholder="请输入绑定钉钉手机号"
+            class="transparent-input"
+          >
             <template #left-icon>
-              <van-icon class="iconfont ico_size" class-prefix="icon" name="phone" size="0.5rem"></van-icon>
+              <van-icon
+                class="iconfont ico_size"
+                class-prefix="icon"
+                name="phone"
+                size="0.5rem"
+              ></van-icon>
             </template>
           </van-field>
         </div>
         <div class="login_input_code">
-          <van-field v-model="user.smsCode" left-icon="comment-o" type="digit" maxlength="6" name="userPwd"
-            placeholder="请输入验证码" class="transparent-input">
+          <van-field
+            v-model="user.smsCode"
+            left-icon="comment-o"
+            type="digit"
+            maxlength="6"
+            name="userPwd"
+            placeholder="请输入验证码"
+            class="transparent-input"
+          >
             <template #left-icon>
-              <van-icon class="iconfont ico_size" class-prefix="icon" name="message_fill" size="0.5rem"></van-icon>
+              <van-icon
+                class="iconfont ico_size"
+                class-prefix="icon"
+                name="message_fill"
+                size="0.5rem"
+              ></van-icon>
             </template>
           </van-field>
           <van-button type="primary" :disabled="disabled" class="login_getcode" @click="onPush">{{
@@ -24,11 +48,12 @@
         </div>
       </div>
       <van-button plain hairline type="primary" native-type="submit" class="login_button">
-        登 录</van-button>
+        登 录</van-button
+      >
     </van-form>
   </div>
   <div>
-    <van-dialog v-model:show="dialogShow" :title=dialog_tittle confirmButtonText="我知道了">
+    <van-dialog v-model:show="dialogShow" :title="dialog_tittle" confirmButtonText="我知道了">
       <img src="@/assets/picture/smscode_Remind.png" class="dialog_img" />
     </van-dialog>
   </div>
@@ -63,14 +88,12 @@ if (LoginStore.loginUser.userPhone === '') {
   disabled.value = true
 }
 
-const dialog_tittle = ref("验证码已发送，返回消息窗口，复制验证码");
-
-
+const dialog_tittle = ref('验证码已发送，返回消息窗口，复制验证码')
 
 //检查手机号，当手机号正确时生效获取验证码的按钮（文本框失去焦点或者是按回车）
 const changeDisabled = () => {
   if (/^1[3456789]\d{9}$/.test(user.userPhone)) {
-    disabled.value = false    
+    disabled.value = false
   } else {
     disabled.value = true
   }
@@ -80,7 +103,7 @@ onMounted(() => {
   //监听文本变化改变验证码按钮状态
   watchEffect(() => {
     // 模拟一个 blur 事件
-    changeDisabled()    
+    changeDisabled()
   })
 })
 
@@ -97,7 +120,7 @@ const countDown = () => {
     disabled.value = false
     buttonText.value = '获取验证码'
     wait.value = 60
-    dialog_tittle.value =  "验证码已发送，返回消息窗口，复制验证码";
+    dialog_tittle.value = '验证码已发送，返回消息窗口，复制验证码'
   } else {
     disabled.value = true
     buttonText.value = `${wait.value} 秒后重新发送`
@@ -116,12 +139,12 @@ const onPush = () => {
   getCode(user.userPhone)
     .then((res) => {
       if (res.data.code === 0) {
-        LoginStore.loginUser.userPhone = user.userPhone;
+        LoginStore.loginUser.userPhone = user.userPhone
         // 验证码获取成功，显示对话框
         dialogShow.value = true
       } else if (res.data.code === -2) {
         // 60秒内不能再次获取验证码，显示对话框
-        dialog_tittle.value =  "稍后重试！返回窗口，复制最近一次验证码";
+        dialog_tittle.value = '重复发送，稍后重试,复制最近一次验证码'
         dialogShow.value = true
       } else {
         showDialog({
@@ -171,6 +194,7 @@ const onSubmit = async () => {
     onLogin(user)
       .then((res) => {
         //判断返回响应代码是否为0，,0为成功，其它为失败
+        console.log(res)
         if (res.data.code === 0) {
           showToast({
             message: '  登录成功',
@@ -194,6 +218,7 @@ const onSubmit = async () => {
         }
       })
       .catch((error) => {
+        console.log(error)
         if (axios.isCancel(error)) {
           console.log('Request canceled', error.message)
         } else {
@@ -313,7 +338,9 @@ div.van-cell.van-field.transparent-input::after {
 }
 
 /* 登录按钮样式 */
-:deep(.van-button.van-button--primary.van-button--normal.van-button--plain.van-button--hairline.van-hairline--surround) {
+:deep(
+    .van-button.van-button--primary.van-button--normal.van-button--plain.van-button--hairline.van-hairline--surround
+  ) {
   width: 450px;
   height: 90px;
   margin-left: 105px;
@@ -335,5 +362,4 @@ div.van-cell.van-field.transparent-input::after {
 :deep(.van-dialog__header) {
   padding-top: 8px;
 }
-
 </style>

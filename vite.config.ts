@@ -26,15 +26,14 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  server:{
-    port:80,
-    host:'192.168.0.31',
-    // host:'192.168.2.6',
-    proxy:{
-      '/sendmsg':{
-        target:'http://210ie6ur7254.vicp.fun:23736/',
-        changeOrigin:true,
-        rewrite:path => path.replace(/^\/sendmsg/,''),
+  server: {
+    port: 80,
+    host: '192.168.0.39', 
+    proxy: {
+      '/sendmsg': {
+        target: 'http://210ie6ur7254.vicp.fun:23736/',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/sendmsg/, ''),
       }
     },
   }

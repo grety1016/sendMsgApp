@@ -5,7 +5,7 @@
       <img class="login2" src="../assets/logo/logo3.png" />    
     </div> 
 </template>
-<script setup>
+<script setup >
 //导入vanta.js和three.js，以及ref等hooks
 import * as THREE from 'three'
 import GLOBE from 'vanta/src/vanta.GLOBE'

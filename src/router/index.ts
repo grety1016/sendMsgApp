@@ -9,6 +9,7 @@ const FlowForm = () => import("@/views/FlowForm/FlowForm.vue");
 const routes = [
   {
     path: "/login",
+    alias:"/",
     name: "Login",
     component: LoginView,
   },
@@ -28,23 +29,22 @@ export const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const loginStore = useLoginStore();
- 
+  
   if (to.path !== "/login") {
     if (loginStore.loginUser.token.length < 8) {
-      // console.log(3);
       next({ name: "Login" });
-    } else {
-      // console.log(2);
+    } else { 
       onLogin(loginStore.loginUser)
         .then((res) => {
-          if (res.data.code === 0) {
-            // console.log(to.path);
+          console.log(res);
+          if (res.data.code === 0) { 
             if (to.path == "/") {
               next({ name: "FlowForm" });
             } else {
               next();
             }
           } else {
+            loginStore.loginUser.token = "";
             next({ name: "Login" });
           }
         })
@@ -54,17 +54,15 @@ router.beforeEach((to, from, next) => {
         });
     }
   } else {
-    if (loginStore.loginUser.token.length < 8) {
-      // console.log(1);
+    if (loginStore.loginUser.token.length < 8) { 
       next();
     } else {
       onLogin(loginStore.loginUser)
-        .then((res) => {
-          // console.log(4);
+        .then((res) => { 
           if (res.data.code === 0) {
             next({ name: "FlowForm" });
           } else {
-            // console.log(5);
+            loginStore.loginUser.token = ""; 
             next({ name: "Login" });
           }
         })

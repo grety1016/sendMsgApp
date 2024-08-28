@@ -6,6 +6,27 @@
   "description": "sendMsg自定义图标",
   "glyphs": [
     {
+      "icon_id": "5452270",
+      "name": "我发起的",
+      "font_class": "InitiatedIt",
+      "unicode": "e66e",
+      "unicode_decimal": 58990
+    },
+    {
+      "icon_id": "6570223",
+      "name": "待办",
+      "font_class": "TodoList",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "10724919",
+      "name": "已完成",
+      "font_class": "Completed",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
       "icon_id": "7008966",
       "name": "message_fill",
       "font_class": "message_fill",

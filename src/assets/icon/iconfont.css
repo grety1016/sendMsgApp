@@ -1,8 +1,10 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4648511 */
-  src: url('iconfont.woff2?t=1723771239517') format('woff2'),
-       url('iconfont.woff?t=1723771239517') format('woff'),
-       url('iconfont.ttf?t=1723771239517') format('truetype');
+  /* Color fonts */
+  src: 
+       url('iconfont.woff2?t=1724744438125') format('woff2'),
+       url('iconfont.woff?t=1724744438125') format('woff'),
+       url('iconfont.ttf?t=1724744438125') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +13,18 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-InitiatedIt:before {
+  content: "\e66e";
+}
+
+.icon-TodoList:before {
+  content: "\e61a";
+}
+
+.icon-Completed:before {
+  content: "\e600";
 }
 
 .icon-message_fill:before {
