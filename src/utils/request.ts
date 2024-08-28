@@ -31,8 +31,8 @@ request.interceptors.request
 
 
 //响应拦截器
-request.interceptors.response.use((response) => {
-    return response;
+request.interceptors.response.use((res) => {
+    return res;
 }, (error) => {
     console.log(error);
 });
