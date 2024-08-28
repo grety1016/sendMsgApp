@@ -35,8 +35,7 @@ router.beforeEach((to, from, next) => {
       next({ name: "Login" });
     } else { 
       onLogin(loginStore.loginUser)
-        .then((res) => {
-          console.log(res);
+        .then((res) => { 
           if (res.data.code === 0) { 
             if (to.path == "/") {
               next({ name: "FlowForm" });

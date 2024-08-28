@@ -138,7 +138,6 @@ const onPush = () => {
   //向服务器请求随机验证码
   getCode(user.userPhone)
     .then((res) => {
-      console.log(res);
       if (res.data.code === 0) {
         LoginStore.loginUser.userPhone = user.userPhone
         // 验证码获取成功，显示对话框
@@ -195,7 +194,6 @@ const onSubmit = async () => {
     onLogin(user)
       .then((res) => {
         //判断返回响应代码是否为0，,0为成功，其它为失败
-        console.log(res)
         if (res.data.code === 0) {
           showToast({
             message: '  登录成功',
