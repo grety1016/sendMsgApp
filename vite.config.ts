@@ -28,10 +28,10 @@ export default defineConfig({
   },
   server: {
     port: 80,
-    host: '192.168.0.39', 
+    host: '127.0.0.1',
     proxy: {
       '/sendmsg': {
-        target: 'http://210ie6ur7254.vicp.fun:23736/',
+        target: 'http://127.0.0.1:8000/',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/sendmsg/, ''),
       }
