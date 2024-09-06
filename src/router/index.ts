@@ -1,6 +1,6 @@
 import { onLogin } from "@/api/userLogin";
-import { createRouter, createWebHistory } from "vue-router"; 
-import { useLoginStore } from "@/stores"; 
+import { createRouter, createWebHistory } from "vue-router";
+import { useLoginStore } from "@/stores";
 // import { User } from "@/types/types"; 
 
 const LoginView = () => import("@/views/Login/LoginView.vue");
@@ -9,7 +9,7 @@ const FlowForm = () => import("@/views/FlowForm/FlowForm.vue");
 const routes = [
   {
     path: "/login",
-    alias:"/",
+    alias: "/",
     name: "Login",
     component: LoginView,
   },
@@ -29,14 +29,14 @@ export const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const loginStore = useLoginStore();
-  
+
   if (to.path !== "/login") {
     if (loginStore.loginUser.token.length < 8) {
       next({ name: "Login" });
-    } else { 
+    } else {
       onLogin(loginStore.loginUser)
-        .then((res) => { 
-          if (res.data.code === 0) { 
+        .then((res) => {
+          if (res.data.code === 0) {
             if (to.path == "/") {
               next({ name: "FlowForm" });
             } else {
@@ -53,15 +53,15 @@ router.beforeEach((to, from, next) => {
         });
     }
   } else {
-    if (loginStore.loginUser.token.length < 8) { 
+    if (loginStore.loginUser.token.length < 8) {
       next();
     } else {
       onLogin(loginStore.loginUser)
-        .then((res) => { 
+        .then((res) => {
           if (res.data.code === 0) {
             next({ name: "FlowForm" });
           } else {
-            loginStore.loginUser.token = ""; 
+            loginStore.loginUser.token = "";
             next({ name: "Login" });
           }
         })
