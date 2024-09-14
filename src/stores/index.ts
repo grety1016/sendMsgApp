@@ -23,6 +23,7 @@ export const useLoginStore = defineStore(
       loginUser = Object.assign(loginUser, data)
       loginUser.smsCode = ''
       //另外一种展开语法  loginUser = { ...loginUser, ...data };这种方法要求被复制的对象也有跟新的对象有相同的方法方可
+ 
     }
 
     //将变量及方法暴露出去

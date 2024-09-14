@@ -9,23 +9,16 @@ declare module 'vue' {
   export interface GlobalComponents {
     BackGround: typeof import('./src/components/BackGround.vue')['default']
     BackGround2: typeof import('./src/components/BackGround2.vue')['default']
-    copy: typeof import('./src/components/BackGround copy.vue')['default']
     CustomIcon: typeof import('./src/components/CustomIcon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     VanButton: typeof import('vant/es')['Button']
     VanDialog: typeof import('vant/es')['Dialog']
-    VanDivider: typeof import('vant/es')['Divider']
     VanField: typeof import('vant/es')['Field']
     VanForm: typeof import('vant/es')['Form']
     VanIcon: typeof import('vant/es')['Icon']
-    VanNavBar: typeof import('vant/es')['NavBar']
     VanPullRefresh: typeof import('vant/es')['PullRefresh']
-    VanSwipe: typeof import('vant/es')['Swipe']
-    VanSwipeItem: typeof import('vant/es')['SwipeItem']
     VanTab: typeof import('vant/es')['Tab']
-    VanTabbar: typeof import('vant/es')['Tabbar']
-    VanTabbarItem: typeof import('vant/es')['TabbarItem']
     VanTabs: typeof import('vant/es')['Tabs']
   }
 }
