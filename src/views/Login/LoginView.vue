@@ -62,7 +62,7 @@
 <script setup lang="ts">
 import { reactive, defineAsyncComponent, ref, watchEffect, onMounted } from 'vue'
 //引入login从API
-import { onLogin, getCode } from '@/api/userLogin'
+import { onLogin, getCode } from '@/api/sendMsg'
 //引入pinia的Store
 import { useLoginStore } from '@/stores'
 //引入类型

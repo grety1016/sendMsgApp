@@ -1,4 +1,4 @@
-import { onLogin } from "@/api/userLogin";
+import { onLogin } from "@/api/sendMsg";
 import { createRouter, createWebHistory } from "vue-router";
 import { useLoginStore } from "@/stores";
 // import { User } from "@/types/types"; 
