@@ -1,13 +1,8 @@
-<script setup lang="ts">
-import { defineAsyncComponent } from 'vue'; 
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <!-- <LoginBackground/> -->
   <RouterView></RouterView>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
