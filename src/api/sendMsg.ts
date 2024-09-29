@@ -16,7 +16,7 @@ export const getCode = async (data: String) => {
         url: `/user/getsmscode?userphone=${data}`,
         method: 'get',
     });
-};
+}; 
 
 export const getItemList = async (data: IGeetItemList) => {
     return request({
