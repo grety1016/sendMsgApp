@@ -8,23 +8,22 @@ import App from '@/App.vue'
 import 'amfe-flexible'//用于移动端的响应式布局，配合postcss-pxtorem使用
 
 //引入路由
-import {router} from '@/router'
+import { router } from '@/router'
 
 //引入Pinia
-import {pinia} from '@/stores'
+import { pinia } from '@/stores'
 //自定义图标
 import '@/assets/icon/iconfont.css'
 //引入本地自定义组件用于全局
 import '@/components/CustomIcon.vue'
 
-// 引入样式
-import './styles/index.css'
 
- 
- 
+
+
+
 
 
 createApp(App)
-.use(router)
-.use(pinia)  
-.mount('#app')
+    .use(router)
+    .use(pinia)
+    .mount('#app')

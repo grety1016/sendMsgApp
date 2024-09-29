@@ -245,7 +245,7 @@ const loginValid = () => {
       showToast('请输入验证码')
       return false
     }
-  } else if (!/^[0-9]{6}$/.test(user.smsCode)) {
+  } else if (!/^[0-9]{4}$/.test(user.smsCode)) {
     showToast('验证码格式不正确')
     return false
   }

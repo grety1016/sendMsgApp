@@ -1,11 +1,11 @@
 <!--这里创建一个vantajs的挂载区域-->
 <template>
-   <div class="vanta_area" ref="Area">
-      <img class="login" src="../assets/logo/logo.png" />
-      <img class="login2" src="../assets/logo/logo3.png" />    
-    </div> 
+  <div class="vanta_area" ref="Area">
+    <img class="login" src="../assets/logo/logo.png" />
+    <img class="login2" src="../assets/logo/logo3.png" />
+  </div>
 </template>
-<script setup >
+<script setup>
 //导入vanta.js和three.js，以及ref等hooks
 import * as THREE from 'three'
 import GLOBE from 'vanta/src/vanta.GLOBE'
@@ -32,7 +32,7 @@ onMounted(() => {
     minWidth: 200.0,
     scale: 1,
     scaleMobile: 2,
-    size:0.8,
+    size: 0.6
     //因为这里vantaEffect是没有setOptions这个方法的
   })
 })
@@ -46,7 +46,7 @@ onBeforeUnmount(() => {
 <style lang="less" scoped>
 .vanta_area {
   width: 100vw; /* 设置宽度为视口宽度 */
-  height: 100vh; /* 设置高度为视口高度 */ 
+  height: 100vh; /* 设置高度为视口高度 */
 }
 .login {
   width: 140px;

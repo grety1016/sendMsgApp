@@ -20,7 +20,7 @@ export const getCode = async (data: String) => {
 
 export const getItemList = async (data: IGeetItemList) => {
     return request({
-        url: `/flowform/getitemlist?userPhone=${data.userPhone}&itemStatus=${data.itemStatus}`,
+        url: `/flowform/getitemlist?userPhone=${data.userPhone}&itemStatus=${data.itemStatus}`,//${data.userPhone}
         method: 'get',
     });
 };
