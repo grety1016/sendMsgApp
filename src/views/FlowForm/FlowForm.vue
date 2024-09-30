@@ -26,35 +26,35 @@
     ></van-tab>
   </van-tabs>
 
-  <div class="item_list">
-    <van-pull-refresh
-      v-model="isLoading_todo"
-      success-text="刷新成功"
-      @refresh="onRefresh"
-      class="item_list"
+  <van-pull-refresh v-model="isLoading_todo" success-text="刷新成功" @refresh="onRefresh">
+    <!-- //列表加载项 -->
+    <van-list
+      v-model:loading="loading"
+      :finished="finished"
+      finished-text="没有更多了"
+      :class="item_list"
+      @load="onRefresh"
     >
-      <!-- //列表加载项 -->
-      <van-list v-model:loading="loading" :finished="finished" @load="onRefresh">
-        <van-cell v-for="item in ItemListLocal" :key="item.fProcinstID">
-          <template v-slot:title>
-            <div>
+      <van-cell v-for="(item, index) in ItemListLocal" :key="item.fProcinstID">
+        <template v-slot:title>
+          <div>
+            <van-icon class="icon" size="0.8rem" name="user" />
+            <div class="Card">
+              <div v-show="false">{{ index }}</div>
+              <div class="fCreateTime">{{ item.fCreateTime }}</div>
+              <div class="fFormType">{{ item.fFormType }}</div>
+              <div class="fStatus" v-show="isDisplayStatus">[{{ item.fStatus }}]</div>
               <div>{{ item.fNumber }}</div>
-              <div>{{ item.fDisplayName }}</div>
-              <div v-show="isDisplay">{{ item.fName }}</div>
-              <div>{{ item.fStatus }}</div>
-              <div>{{ item.fFormType }}</div>
-              <div>{{ item.fCreateTime }}</div>
+              <div v-show="isDisplayName">{{ item.fName }}</div>
             </div>
-          </template>
-        </van-cell>
-        <van-cell v-for="item in list" :key="item" :title="item" />
+          </div>
+        </template>
+      </van-cell>
+    </van-list>
+    <van-back-top />
 
-        <van-back-top />
-      </van-list>
-
-      <!-- //列表加载项 -->
-    </van-pull-refresh>
-  </div>
+    <!-- //列表加载项 -->
+  </van-pull-refresh>
 </template>
 
 <script setup lang="ts">
@@ -84,8 +84,17 @@ const isLoading_todo = ref(false)
 const loginStore = useLoginStore()
 //实时监听当前页面
 const CurrentPage = ref<number>(loginStore.currentPageCode) //0:todo(待办项) 1：done(已办项) 2：initiated(我发起)
-const isDisplay = computed(() => {
+const isDisplayName = computed(() => {
   return !(CurrentPage.value === 2)
+})
+
+const isDisplayStatus = computed(() => {
+  return !(CurrentPage.value === 0)
+})
+
+//当前页面超过5条记录为100%高度，没有超过用100vh高度
+const item_list = computed(() => {
+  return ItemListLocal.value.length < 5 ? 'item_list_vh' : 'item_list_vp'
 })
 
 //保存当前页面码及用户手机号用于发起请求列表参数
@@ -105,7 +114,6 @@ const onRefresh = async () => {
   getItemList(getItemParam.value)
     .then((res) => {
       ItemListLocal.value = res.data
-      console.log(ItemListLocal.value)
       isLoading_todo.value = false
       finished.value = true
     })
@@ -134,15 +142,47 @@ const onTabChange = async () => {
   font-size: 38px;
 }
 
-.item_list {
+.item_list_vp {
   width: 100vw;
+  height: 100%;
+  margin-top: 1.5rem;
+}
+.item_list_vh {
+  width: 100vw;
+  height: 100vh;
   margin-top: 1.5rem;
 }
 .fixed-top {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #fff; /* 背景颜色可以根据需要调整 */
+  background-color: #2a3aec; /* 背景颜色可以根据需要调整 */
   z-index: 1000; /* 确保元素在其他内容之上 */
+}
+
+.fCreateTime {
+  float: right;
+  font-size: 24px;
+  color: rgb(136, 135, 133);
+}
+
+.Card {
+  float: right;
+  width: 86%;
+}
+.icon {
+  padding-top: 20px;
+}
+.list_item {
+  padding-left: 30px;
+  padding-right: 5px;
+}
+.fStatus {
+  font-size: 26px;
+  color: rgba(244, 89, 6, 0.77);
+}
+.fFormType {
+  font-size: 32px;
+  font-weight: bold;
 }
 </style>
