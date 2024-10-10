@@ -35,7 +35,12 @@
       :class="item_list"
       @load="onRefresh"
     >
-      <van-cell v-for="(item, index) in ItemListLocal" :key="item.fProcinstID">
+      <van-cell
+        v-for="(item, index) in loginStore.ItemList"
+        :key="item.fProcinstID"
+        :class="index % 2 === 0 ? 'listItem_single' : 'listItem_double'"
+        @click="onItemClick(item.fProcinstID)"
+      >
         <template v-slot:title>
           <div>
             <van-icon class="icon" size="0.8rem" name="user" />
@@ -59,7 +64,7 @@
 
 <script setup lang="ts">
 // import { useLoginStore } from '@/stores/index'
-// import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 import { onMounted, ref, computed } from 'vue'
 //vant
 import { showLoadingToast, closeToast } from 'vant'
@@ -71,17 +76,18 @@ import { useLoginStore } from '@/stores'
 import { getItemList } from '@/api/sendMsg'
 
 //types
-import type { IGeetItemList, IFlowItemList } from '@/types/types_d'
+import type { IGeetItemList } from '@/types/types_d'
 
+const router = useRouter()
+
+//引入本地缓存loginstore对象用来读取userphone
+const loginStore = useLoginStore()
 //列表变量
-const ItemListLocal = ref([] as IFlowItemList[])
 const loading = ref(false)
 const finished = ref(false)
 
 const isLoading_todo = ref(false)
 
-//引入本地缓存loginstore对象用来读取userphone
-const loginStore = useLoginStore()
 //实时监听当前页面
 const CurrentPage = ref<number>(loginStore.currentPageCode) //0:todo(待办项) 1：done(已办项) 2：initiated(我发起)
 const isDisplayName = computed(() => {
@@ -94,7 +100,7 @@ const isDisplayStatus = computed(() => {
 
 //当前页面超过5条记录为100%高度，没有超过用100vh高度
 const item_list = computed(() => {
-  return ItemListLocal.value.length < 5 ? 'item_list_vh' : 'item_list_vp'
+  return loginStore.ItemList.length < 5 ? 'item_list_vh' : 'item_list_vp'
 })
 
 //保存当前页面码及用户手机号用于发起请求列表参数
@@ -105,6 +111,8 @@ const getItemParam = computed<IGeetItemList>(() => ({
 
 // const loginStore = useLoginStore();
 // const router = useRouter();
+
+//页面加载完成后请求列表数据
 onMounted(async () => {
   await onRefresh()
 })
@@ -113,7 +121,7 @@ onMounted(async () => {
 const onRefresh = async () => {
   getItemList(getItemParam.value)
     .then((res) => {
-      ItemListLocal.value = res.data
+      loginStore.ItemList = res.data
       isLoading_todo.value = false
       finished.value = true
     })
@@ -122,7 +130,7 @@ const onRefresh = async () => {
       closeToast()
     })
 }
-
+//切换页签
 const onTabChange = async () => {
   // 显示加载中的提示
   showLoadingToast({
@@ -135,17 +143,29 @@ const onTabChange = async () => {
 
   loginStore.currentPageCode = CurrentPage.value //切换页签时把页码回写到本地缓存
 }
+
+//点击列表项跳转到详情页
+const onItemClick = async (fProcinstID: string) => {
+  await router.push({ name: 'FlowDetail', params: { fProcinstID: fProcinstID } })
+}
 </script>
 
 <style scoped>
 :deep(.van-tab__text--ellipsis) {
   font-size: 38px;
 }
+.listItem_single {
+  /* background: linear-gradient(135deg, #f8f2f2f5, #f8f2f2f5, #f8f2f2f5); */
+  background-color: #faecec;
+}
+.listItem_double {
+  background-color: #f8e6e6;
+}
 
 .item_list_vp {
   width: 100vw;
   height: 100%;
-  margin-top: 1.5rem;
+  margin-top: 1.2rem;
 }
 .item_list_vh {
   width: 100vw;

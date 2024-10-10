@@ -54,7 +54,7 @@
   </div>
   <div>
     <van-dialog v-model:show="dialogShow" :title="dialog_tittle" confirmButtonText="我知道了">
-      <img src="@/assets/picture/smscode_Remind.png" class="dialog_img" />
+      <img src="@/assets/picture/smscode_Remind.jpg" class="dialog_img" />
     </van-dialog>
   </div>
 </template>

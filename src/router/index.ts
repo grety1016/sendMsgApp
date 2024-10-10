@@ -5,6 +5,7 @@ import { useLoginStore } from "@/stores";
 
 const LoginView = () => import("@/views/Login/LoginView.vue");
 const FlowForm = () => import("@/views/FlowForm/FlowForm.vue");
+const FlowDetail = () => import("@/views/FlowForm/FlowDetail.vue");
 
 const routes = [
   {
@@ -17,6 +18,12 @@ const routes = [
     path: "/flowform",
     name: "FlowForm",
     component: FlowForm,
+  },
+  {
+    path: "/flowform/:fProcinstID",
+    name: "FlowDetail",
+    component: FlowDetail,
+    props: true,
   },
 ];
 

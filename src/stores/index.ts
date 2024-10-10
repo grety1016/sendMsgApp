@@ -1,7 +1,9 @@
 import { createPinia, defineStore } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-import { reactive,ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { User } from '@/types/types'
+import type { IFlowItemList } from '@/types/types_d'
+
 // import useWebSocket  from 'vue-native-websocket-vue3'
 
 export const pinia = createPinia().use(piniaPluginPersistedstate)
@@ -18,7 +20,7 @@ export const useLoginStore = defineStore(
     }
 
     //定义userLoginStore变量
-    let loginUser:User = reactive(new User());
+    let loginUser: User = reactive(new User());
 
     //定义userLoginStore函数
     const setUserData = (data: User) => {
@@ -28,8 +30,14 @@ export const useLoginStore = defineStore(
 
     }
 
-  //FlowForm页面store
+    //FlowForm页面store
+    //定义流程列表当前页码
     const currentPageCode = ref(0); //0:todo(待办项) 1：done(已办项) 2：initiated(我发起)
+    //定义流程列表数据
+    const ItemList = ref([] as IFlowItemList[]);
+    //定义流程明细表当前行的数据
+    const currentItem = ref(0);
+    //定义流程明细表当前页码
 
     //将变量及方法暴露出去
     return {
@@ -38,7 +46,10 @@ export const useLoginStore = defineStore(
       //loginUser变量及方法
       loginUser,
       setUserData,
+      //FlowForm页面变量及方法
       currentPageCode,
+      ItemList,
+      currentItem,
     }
   },
   {
@@ -46,12 +57,13 @@ export const useLoginStore = defineStore(
       {
         key: 'localStorage',
         storage: window.localStorage,
-        paths: ['loginUser','currentPageCode']
+        paths: ['loginUser', 'currentPageCode']
       }
-      // ,{
-      //     key:'sessionStorage',
-      //     storage:window.sessionStorage,
-      //     paths:['loginUser']}
+      , {
+        key: 'sessionStorage',
+        storage: window.sessionStorage,
+        paths: ['loginUser', 'ItemList', 'currentItem']
+      }
     ]
   }
 )
